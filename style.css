@@ -1,0 +1,65 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background-color: #000;
+}
+
+#standby-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#youtube-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+#qr-code {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 440px;
+  height: 440px;
+}
+
+#content-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.countdown-text {
+  font-size: 6em;
+  font-weight: bold;
+  color: #d72638;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#camera {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  display: none;
+}
+
+#image {
+  width: 100%;
+  height: 100%;
+}
+
+#image img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
+}

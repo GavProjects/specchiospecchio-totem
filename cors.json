@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["https://specchiospecchio-mvp.web.app"],
+    "method": ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"],
+    "responseHeader": ["Content-Type", "Authorization", "x-goog-resumable", "X-Requested-With"],
+    "maxAgeSeconds": 3600
+  }
+]
