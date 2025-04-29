@@ -20,8 +20,8 @@ const webcamElement = document.getElementById("camera");
 const canvasElement = document.getElementById("canvas");
 const webcam = new Webcam(webcamElement, "user", canvasElement, {
   facingMode: "user",
-  width: 1080,
-  height: 1920
+  width: 1920,
+  height: 1080
 });
 
 async function initWebcam() {
@@ -94,13 +94,31 @@ async function gestisciSessione(data, sessionId) {
     try {
       const videoWidth = webcamElement.videoWidth;
       const videoHeight = webcamElement.videoHeight;
+
       canvasElement.width = videoWidth;
       canvasElement.height = videoHeight;
 
       const ctx = canvasElement.getContext('2d');
       ctx.drawImage(webcamElement, 0, 0, videoWidth, videoHeight);
 
-      const picture = canvasElement.toDataURL('image/jpeg', 0.9);
+      const baseImage = canvasElement.toDataURL('image/jpeg', 1.0);
+
+      const img = new Image();
+      img.src = baseImage;
+      await new Promise(resolve => img.onload = resolve);
+
+      const squareSize = Math.min(img.width, img.height);
+      const offsetX = (img.width - squareSize) / 2;
+      const offsetY = (img.height - squareSize) / 2;
+
+      const squareCanvas = document.createElement("canvas");
+      squareCanvas.width = squareSize;
+      squareCanvas.height = squareSize;
+
+      const squareCtx = squareCanvas.getContext("2d");
+      squareCtx.drawImage(img, offsetX, offsetY, squareSize, squareSize, 0, 0, squareSize, squareSize);
+
+      const picture = squareCanvas.toDataURL('image/jpeg', 1.0);
 
       hideCamera();
       showLoading();
